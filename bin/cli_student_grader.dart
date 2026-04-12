@@ -210,7 +210,7 @@ Choose an option: ''');
         print("Enter comment: ");
         var comment = stdin.readLineSync();
 
-        if (comment == null || comment.isEmpty) {
+        if (comment == null || comment.isEmpty) { 
           print("Invalid comment!\n");
           break;
         }
