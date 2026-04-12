@@ -1,51 +1,46 @@
 import 'dart:io';
 
-import 'package:cli_student_grader/cli_student_grader.dart' as cli_student_grader;
+import 'package:cli_student_grader/cli_student_grader.dart'
+    as cli_student_grader;
 
 void main() {
   //AppTitle
   const String App_Title = "Student Grader v1.0";
 
   // Available Subjects
-  final availableSubjects = {
-    "Math",
-    "English",
-    "Science",
-    "ICT"
-  };
+  final availableSubjects = {"Math", "English", "Science", "ICT"};
 
   //List & Map for Students
-  List<Map<String, dynamic>> students = [{
-    "Name"   : "Yeasin",
-    "Scores" : [89, 91, 81],
-    "Subjects": {...availableSubjects},
-    "bonus" : null,
-    "comment" : null
+  List<Map<String, dynamic>> students = [
+    {
+      "Name": "Yeasin",
+      "Scores": [89, 91, 81],
+      "Subjects": {...availableSubjects},
+      "bonus": null,
+      "comment": null
     },
     {
-    "Name"   : "Sadia",
-    "Scores" : [85, 92, 78],
-    "Subjects": {...availableSubjects},
-    "bonus" : 5,
-    "comment" : "Good progress"
+      "Name": "Sadia",
+      "Scores": [85, 92, 78],
+      "Subjects": {...availableSubjects},
+      "bonus": 5,
+      "comment": "Good progress"
     },
     {
-    "Name"   : "Rahim",
-    "Scores" : [60, 70, 65],
-    "Subjects": {...availableSubjects},
-    "bonus" : null,
-    "comment" : null
+      "Name": "Rahim",
+      "Scores": [60, 70, 65],
+      "Subjects": {...availableSubjects},
+      "bonus": null,
+      "comment": null
     }
   ];
-
-
 
 //var isRunning = true;
 
 // do{};
 
 // Main Menu
-print('''===== $App_Title =====
+  print('''===== $App_Title =====
 
 1. Add Student
 2. Record Score
@@ -58,64 +53,88 @@ print('''===== $App_Title =====
 
 Choose an option: ''');
 
-var choice = stdin.readLineSync();
+  var choice = stdin.readLineSync();
 
-switch(choice)
-{
-  //3. Add Student
-  case 1:
-        print("Enter Students name:");
-        String? name = stdin.readLineSync();
+  switch (choice) {
+    //3. Add Student
+    case 1:
+      print("Enter Students name:");
+      String? name = stdin.readLineSync();
 
-        if (name == null || name.isEmpty) {
-          print("Invalid name\n");
-          break;
-        }
-        var student = {
-          "Name": name,
-          "Scores": [],
-          "Subjects": {...availableSubjects},
-          "bonus": null,
-          "comment": null
-        };
-        students.add(student);
-        print("Student added successfully!\n");
+      if (name == null || name.isEmpty) {
+        print("Invalid name\n");
         break;
-  //4. Record Score
-  case 2:
-        if (students.isEmpty) {
-          print("No students available.Please add students first.\n");
+      }
+      var student = {
+        "Name": name,
+        "Scores": [],
+        "Subjects": {...availableSubjects},
+        "bonus": null,
+        "comment": null
+      };
+      students.add(student);
+      print("Student added successfully!\n");
+      break;
+    //4. Record Score
+    case 2:
+      if (students.isEmpty) {
+        print("No students available.\n");
+        break;
+      }
+      
+      int index;
+      while (true) {
+        for (int i = 0; i < students.length; i++) {
+          print("${i + 1}. ${students[i]["name"]}");
+        }
+
+        print("Select student:");
+        var input = stdin.readLineSync();
+
+        var num = int.tryParse(input ?? "");
+        if (num != null && num >= 1 && num <= students.length) {
+          index = num - 1;
           break;
         }
 
-        int index = -1;
-        while(index < 0 || index >= students.length)
-        {
-          for (int i = 0; i<students.length; i++)
-          {
-            print("${i + 1}. ${students[i]["name"]}");
-          }
+        print("Invalid student number!");
+      }
 
-          print("Please Select a students number: ");
-          var input = stdin.readLineSync();
-          if (input == null || int.tryParse(input) == null) {
-            print("Invalid input. Please enter a valid number.\n");
-            continue;
-          }
+      var student = students[index];
+      var subjects = student["subjects"] as Set<String>;
+      print("Available subjects:");
+      for (var sub in subjects) {
+        print("- $sub");
+      }
 
+      String subject;
+      while (true) {
+        print("Enter subject:");
+        var input = stdin.readLineSync();
+
+        if (input != null && subjects.contains(input)) {
+          subject = input;
+          break;
         }
 
- 
+        print("Invalid subject!");
+      }
 
+      int score;
+      while (true) {
+        print("Enter score (0-100):");
+        var input = stdin.readLineSync();
+
+        var num = int.tryParse(input ?? "");
+        if (num != null && num >= 0 && num <= 100) {
+          score = num;
+          break;
+        }
+        print("Invalid score!");
+      }
+
+      (student["scores"] as List<int>).add(score);
+      print("Score $score added for $subject.\n");
+      break;
+  }
 }
-
-
-
-
-
-
-
-
-
-}
-
