@@ -307,13 +307,13 @@ Choose an option: ''');
 ╔═════════════════════════════════════════════╗
 ║       REPORT CARD                           ║
 ╠═════════════════════════════════════════════╝
-║ Name:    ${student["name"]}                 ║
-║ Scores:  $scores                            ║
-║ Bonus:   +${(student["bonus"] as int?) ?? 0}║
-║ Average: ${finalAvg.toStringAsFixed(1)}     ║
-║ Grade:   $grade                             ║
-║ Comment: $comment                           ║
-║ Feedback: $feedback                         ║
+║ Name:    ${student["name"]}                 
+║ Scores:  $scores                            
+║ Bonus:   +${(student["bonus"] as int?) ?? 0}
+║ Average: ${finalAvg.toStringAsFixed(1)}     
+║ Grade:   $grade                             
+║ Comment: $comment                           
+║ Feedback: $feedback                         
 ╚═════════════════════════════════════════════╝
 """);
         break;
