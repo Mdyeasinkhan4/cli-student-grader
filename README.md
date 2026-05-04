@@ -118,8 +118,7 @@ Practice real-world data handling using collections
 Apply null safety effectively
 Strengthen logic building and control flow
 📌 Author
-Your Name
-CSE Student
+Md Yeasin khan
 ⭐ Feedback
 
 If you find this project helpful, consider giving it a ⭐ on GitHub!
