@@ -136,9 +136,3 @@ If you want extra marks:
 
 ---
 
-If you want, I can also:
-- ✅ :contentReference[oaicite:0]{index=0}
-- ✅ :contentReference[oaicite:1]{index=1}
-- ✅ :contentReference[oaicite:2]{index=2}
-
-Just tell me 👍
